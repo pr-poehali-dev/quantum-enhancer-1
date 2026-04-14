@@ -178,6 +178,15 @@ function PricingSection({ isActive }: { isActive: boolean }) {
                 </li>
               ))}
             </ul>
+            <button
+              className="mt-2 w-full rounded-2xl py-3 text-sm font-bold tracking-wide transition-all"
+              style={plan.highlighted
+                ? { backgroundColor: "white", color: ACCENT }
+                : { backgroundColor: ACCENT, color: "white" }
+              }
+            >
+              Вступить
+            </button>
           </motion.div>
         ))}
       </div>
