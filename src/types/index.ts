@@ -8,6 +8,7 @@ export interface Section {
   showButton?: boolean
   buttonText?: string
   isProgram?: boolean
+  isPricing?: boolean
 }
 
 export interface SectionProps extends Section {

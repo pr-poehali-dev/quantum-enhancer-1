@@ -66,8 +66,82 @@ function ProgramSection({ isActive }: { isActive: boolean }) {
   )
 }
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, isProgram }: SectionProps) {
+const plans = [
+  {
+    name: "БАЗА",
+    price: "9 900 ₽",
+    features: [
+      "Три недели живого интенсива",
+      "Йога, гимнастика, психология в группе",
+      "Факультативы по воскресеньям",
+      "Поддержка сообщества СИЛА",
+    ],
+    highlighted: false,
+  },
+  {
+    name: "ГЛУБИНА",
+    price: "14 900 ₽",
+    features: [
+      "Всё из тарифа БАЗА",
+      "3 индивидуальных занятия",
+      "Личная работа с психологом",
+      "Приоритетная поддержка",
+    ],
+    highlighted: true,
+  },
+]
+
+function PricingSection({ isActive }: { isActive: boolean }) {
+  return (
+    <section className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
+      <motion.h2
+        className="text-4xl md:text-5xl font-bold text-white mb-10 tracking-tight"
+        initial={{ opacity: 0, y: 40 }}
+        animate={isActive ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        Тарифы
+      </motion.h2>
+      <div className="flex flex-col md:flex-row gap-6 max-w-3xl">
+        {plans.map((plan, i) => (
+          <motion.div
+            key={plan.name}
+            className="flex-1 rounded-3xl p-8 flex flex-col gap-5"
+            style={{
+              backgroundColor: plan.highlighted ? ACCENT : "#1E1E1E",
+              border: plan.highlighted ? "none" : "1px solid #2a2a2a",
+            }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isActive ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.15 + i * 0.15 }}
+          >
+            <div>
+              <p className="text-sm font-bold tracking-widest uppercase mb-1"
+                style={{ color: plan.highlighted ? "rgba(255,255,255,0.7)" : ACCENT }}>
+                ТАРИФ
+              </p>
+              <h3 className="text-3xl font-bold text-white">{plan.name}</h3>
+            </div>
+            <div className="text-4xl font-bold text-white">{plan.price}</div>
+            <ul className="flex flex-col gap-3 flex-1">
+              {plan.features.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm"
+                  style={{ color: plan.highlighted ? "rgba(255,255,255,0.9)" : "#aaa" }}>
+                  <span className="mt-0.5">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, isProgram, isPricing }: SectionProps) {
   if (isProgram) return <ProgramSection isActive={isActive} />
+  if (isPricing) return <PricingSection isActive={isActive} />
 
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">

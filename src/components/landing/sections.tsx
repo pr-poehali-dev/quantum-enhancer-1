@@ -20,6 +20,11 @@ export const sections = [
     isProgram: true,
   },
   {
+    id: 'pricing',
+    title: 'Тарифы',
+    isPricing: true,
+  },
+  {
     id: 'join',
     title: 'Готовы стартовать?',
     content: 'Присоединяйтесь к интенсиву ИМПУЛЬС и сделайте первый шаг к новой версии себя вместе с клубом СИЛА.',
