@@ -4,8 +4,8 @@ export const sections = [
   {
     id: 'hero',
     subtitle: <Badge variant="outline" className="text-white border-white/40 bg-white/5 tracking-widest text-xs uppercase">Клуб саморазвития СИЛА</Badge>,
-    title: "ИМПУЛЬС",
-    content: 'Живой онлайн-интенсив · Три недели движения, роста и поддержки',
+    title: "Импульс к развитию своей силы",
+    content: 'Начни раскрывать свои возможности — живой онлайн-интенсив три недели движения, роста и поддержки',
     showButton: true,
     buttonText: 'Присоединиться'
   },
