@@ -6,62 +6,111 @@ const ACCENT = "#E53935"
 
 const weeks = [
   {
+    num: "01",
     label: "НЕДЕЛЯ 1",
-    items: ["👋 Знакомство", "🧠 Работа с психологом в группе", "🧘 Йога", "🍏 Семинар по чистке организма"],
-    extra: "🔥 Факультатив (ВС): Speaking Club Английского",
+    theme: "Старт и очищение",
+    days: [
+      { emoji: "👋", title: "Знакомство с группой", desc: "Создаём безопасное пространство, снимаем барьеры — вы перестаёте быть одни на этом пути" },
+      { emoji: "🧠", title: "Психология в группе", desc: "Разбираем внутренние блоки и установки, которые мешают двигаться вперёд" },
+      { emoji: "🧘", title: "Йога", desc: "Возвращаем тело в ресурс: снимаем зажимы, учимся дышать и чувствовать себя" },
+      { emoji: "🍏", title: "Семинар по чистке организма", desc: "Практические инструменты детокса — больше энергии уже с первой недели" },
+    ],
+    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Speaking Club Английского" },
+    result: "Вы в команде, тело просыпается, голова становится светлее",
   },
   {
+    num: "02",
     label: "НЕДЕЛЯ 2",
-    items: ["🧠 Работа с психологом в группе", "🧘 Йога", "💪 Гимнастика постуральных мышц"],
-    extra: "🔥 Факультатив (ВС): Самомассаж",
+    theme: "Тело и глубина",
+    days: [
+      { emoji: "🧠", title: "Психология в группе", desc: "Прорабатываем отношения с собой и другими — уходит тревога, приходит ясность" },
+      { emoji: "🧘", title: "Йога", desc: "Углубляем практику: учимся слышать сигналы тела и входить в состояние потока" },
+      { emoji: "💪", title: "Гимнастика постуральных мышц", desc: "Убираем хроническое напряжение в спине и шее — осанка, лёгкость, уверенность в движении" },
+    ],
+    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Самомассаж" },
+    result: "Тело становится союзником, тревога отступает, сила растёт",
   },
   {
+    num: "03",
     label: "НЕДЕЛЯ 3",
-    items: ["🎭 Психологическая практика", "🧘 Йога", "🤸 Гимнастика"],
-    extra: "🔥 Факультатив (ВС): Дизайн человека",
+    theme: "Интеграция и сила",
+    days: [
+      { emoji: "🎭", title: "Психологическая практика", desc: "Закрепляем изменения: новые реакции, новое мышление, новый способ быть собой" },
+      { emoji: "🧘", title: "Йога", desc: "Финальная практика — интегрируем всё тело и дух в единое состояние силы" },
+      { emoji: "🤸", title: "Гимнастика", desc: "Динамика и радость движения — тело, которое умеет отдыхать и действовать" },
+    ],
+    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Дизайн человека" },
+    result: "Вы выходите с инструментами, которые работают каждый день",
   },
 ]
 
 function ProgramSection({ isActive }: { isActive: boolean }) {
   return (
-    <section className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
-      <motion.h2
-        className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight"
-        initial={{ opacity: 0, y: 40 }}
+    <section className="relative min-h-screen w-full snap-start flex flex-col justify-center py-16 px-8 md:px-16 lg:px-24">
+      <motion.div
+        className="mb-10"
+        initial={{ opacity: 0, y: 30 }}
         animate={isActive ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
       >
-        Программа
-      </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl">
-        {weeks.map((week, i) => (
+        <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: ACCENT }}>3 недели · живой формат</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Программа интенсива</h2>
+      </motion.div>
+
+      <div className="flex flex-col gap-5 max-w-5xl">
+        {weeks.map((week, wi) => (
           <motion.div
-            key={week.label}
-            className="rounded-3xl p-6 flex flex-col gap-4"
-            style={{ backgroundColor: "#1E1E1E" }}
-            initial={{ opacity: 0, y: 50 }}
+            key={week.num}
+            className="rounded-3xl overflow-hidden"
+            style={{ backgroundColor: "#1a1a1a", border: "1px solid #2a2a2a" }}
+            initial={{ opacity: 0, y: 40 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
+            transition={{ duration: 0.5, delay: 0.1 + wi * 0.1 }}
           >
-            <span className="font-bold text-lg" style={{ color: ACCENT }}>{week.label}</span>
-            <ul className="flex flex-col gap-2">
-              {week.items.map((item) => (
-                <li key={item} className="text-white text-sm leading-relaxed">{item}</li>
+            <div className="flex items-center gap-4 px-6 py-4 border-b border-white/5">
+              <span className="text-5xl font-black leading-none" style={{ color: ACCENT, opacity: 0.25 }}>{week.num}</span>
+              <div>
+                <p className="text-xs tracking-widest uppercase text-neutral-500 font-semibold">{week.label}</p>
+                <p className="text-white font-bold text-lg leading-tight">{week.theme}</p>
+              </div>
+              <div className="ml-auto hidden md:flex items-center gap-2 bg-white/5 rounded-2xl px-4 py-2">
+                <span>{week.bonus.emoji}</span>
+                <div>
+                  <p className="text-xs text-neutral-500 leading-none mb-0.5">{week.bonus.label}</p>
+                  <p className="text-white text-sm font-medium leading-none">{week.bonus.title}</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
+              {week.days.map((day) => (
+                <div key={day.title} className="p-4 flex flex-col gap-2" style={{ backgroundColor: "#1a1a1a" }}>
+                  <span className="text-2xl">{day.emoji}</span>
+                  <p className="text-white text-sm font-semibold leading-tight">{day.title}</p>
+                  <p className="text-neutral-500 text-xs leading-relaxed">{day.desc}</p>
+                </div>
               ))}
-            </ul>
-            <p className="text-neutral-400 text-xs mt-auto pt-2 border-t border-white/10">{week.extra}</p>
+            </div>
+            <div className="px-6 py-3 flex items-center gap-2">
+              <span className="text-xs font-semibold" style={{ color: ACCENT }}>Результат →</span>
+              <span className="text-neutral-400 text-xs">{week.result}</span>
+            </div>
           </motion.div>
         ))}
+
+        <motion.div
+          className="rounded-3xl px-6 py-4 flex items-center gap-3 border-2 border-dashed"
+          style={{ backgroundColor: "#121212", borderColor: ACCENT + "66" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isActive ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.45 }}
+        >
+          <span className="text-2xl">🎉</span>
+          <div>
+            <p className="text-white font-semibold text-sm">Финальный сбор группы</p>
+            <p className="text-neutral-500 text-xs">Делимся впечатлениями, фиксируем результат, остаёмся на связи</p>
+          </div>
+        </motion.div>
       </div>
-      <motion.div
-        className="mt-6 rounded-3xl px-6 py-5 max-w-5xl border-2 border-dashed flex items-center gap-3"
-        style={{ backgroundColor: "#121212", borderColor: ACCENT }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={isActive ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.55 }}
-      >
-        <span className="text-white font-semibold text-base">🎉 Сбор группы: Делимся впечатлениями</span>
-      </motion.div>
     </section>
   )
 }
