@@ -10,12 +10,12 @@ const weeks = [
     label: "НЕДЕЛЯ 1",
     theme: "Старт и очищение",
     days: [
-      { emoji: "👋", title: "Знакомство с группой", desc: "Создаём безопасное пространство, снимаем барьеры — вы перестаёте быть одни на этом пути" },
-      { emoji: "🧠", title: "Психология в группе", desc: "Разбираем внутренние блоки и установки, которые мешают двигаться вперёд" },
-      { emoji: "🧘", title: "Йога", desc: "Возвращаем тело в ресурс: снимаем зажимы, учимся дышать и чувствовать себя" },
-      { emoji: "🍏", title: "Семинар по чистке организма", desc: "Практические инструменты детокса — больше энергии уже с первой недели" },
+      { title: "Знакомство с группой", desc: "Создаём безопасное пространство, снимаем барьеры — вы перестаёте быть одни на этом пути" },
+      { title: "Психология в группе", desc: "Разбираем внутренние блоки и установки, которые мешают двигаться вперёд" },
+      { title: "Йога", desc: "Возвращаем тело в ресурс: снимаем зажимы, учимся дышать и чувствовать себя" },
+      { title: "Семинар по чистке организма", desc: "Практические инструменты детокса — больше энергии уже с первой недели" },
     ],
-    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Speaking Club Английского" },
+    bonus: { label: "Факультатив ВС", title: "Speaking Club Английского" },
     result: "Вы в команде, тело просыпается, голова становится светлее",
   },
   {
@@ -23,11 +23,11 @@ const weeks = [
     label: "НЕДЕЛЯ 2",
     theme: "Тело и глубина",
     days: [
-      { emoji: "🧠", title: "Психология в группе", desc: "Прорабатываем отношения с собой и другими — уходит тревога, приходит ясность" },
-      { emoji: "🧘", title: "Йога", desc: "Углубляем практику: учимся слышать сигналы тела и входить в состояние потока" },
-      { emoji: "💪", title: "Гимнастика постуральных мышц", desc: "Убираем хроническое напряжение в спине и шее — осанка, лёгкость, уверенность в движении" },
+      { title: "Психология в группе", desc: "Прорабатываем отношения с собой и другими — уходит тревога, приходит ясность" },
+      { title: "Йога", desc: "Углубляем практику: учимся слышать сигналы тела и входить в состояние потока" },
+      { title: "Гимнастика постуральных мышц", desc: "Убираем хроническое напряжение в спине и шее — осанка, лёгкость, уверенность в движении" },
     ],
-    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Самомассаж" },
+    bonus: { label: "Факультатив ВС", title: "Самомассаж" },
     result: "Тело становится союзником, тревога отступает, сила растёт",
   },
   {
@@ -35,11 +35,11 @@ const weeks = [
     label: "НЕДЕЛЯ 3",
     theme: "Интеграция и сила",
     days: [
-      { emoji: "🎭", title: "Психологическая практика", desc: "Закрепляем изменения: новые реакции, новое мышление, новый способ быть собой" },
-      { emoji: "🧘", title: "Йога", desc: "Финальная практика — интегрируем всё тело и дух в единое состояние силы" },
-      { emoji: "🤸", title: "Гимнастика", desc: "Динамика и радость движения — тело, которое умеет отдыхать и действовать" },
+      { title: "Психологическая практика", desc: "Закрепляем изменения: новые реакции, новое мышление, новый способ быть собой" },
+      { title: "Йога", desc: "Финальная практика — интегрируем всё тело и дух в единое состояние силы" },
+      { title: "Гимнастика", desc: "Динамика и радость движения — тело, которое умеет отдыхать и действовать" },
     ],
-    bonus: { emoji: "🔥", label: "Факультатив ВС", title: "Дизайн человека" },
+    bonus: { label: "Факультатив ВС", title: "Дизайн человека" },
     result: "Вы выходите с инструментами, которые работают каждый день",
   },
 ]
@@ -74,7 +74,6 @@ function ProgramSection({ isActive }: { isActive: boolean }) {
                 <p className="text-white font-bold text-lg leading-tight">{week.theme}</p>
               </div>
               <div className="ml-auto hidden md:flex items-center gap-2 bg-white/5 rounded-2xl px-4 py-2">
-                <span>{week.bonus.emoji}</span>
                 <div>
                   <p className="text-xs text-neutral-500 leading-none mb-0.5">{week.bonus.label}</p>
                   <p className="text-white text-sm font-medium leading-none">{week.bonus.title}</p>
@@ -84,7 +83,6 @@ function ProgramSection({ isActive }: { isActive: boolean }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
               {week.days.map((day) => (
                 <div key={day.title} className="p-4 flex flex-col gap-2" style={{ backgroundColor: "#1a1a1a" }}>
-                  <span className="text-2xl">{day.emoji}</span>
                   <p className="text-white text-sm font-semibold leading-tight">{day.title}</p>
                   <p className="text-neutral-500 text-xs leading-relaxed">{day.desc}</p>
                 </div>
@@ -104,7 +102,6 @@ function ProgramSection({ isActive }: { isActive: boolean }) {
           animate={isActive ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.45 }}
         >
-          <span className="text-2xl">🎉</span>
           <div>
             <p className="text-white font-semibold text-sm">Финальный сбор группы</p>
             <p className="text-neutral-500 text-xs">Делимся впечатлениями, фиксируем результат, остаёмся на связи</p>
